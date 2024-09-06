@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "flagWords": [],
+  "words": [
+    "adminconsole",
+    "applicationtiles",
+    "archivo",
+    "chakra",
+    "colorbluea",
+    "colorblueb",
+    "colorbluec",
+    "colorblued",
+    "colorbluee",
+    "edfi",
+    "edgraph",
+    "fontsource",
+    "iconify",
+    "itee",
+    "matomo",
+    "novu",
+    "selectedtenantid",
+    "tenantid",
+    "testid",
+    "txedexchange",
+    "xlink"
+  ]
+}

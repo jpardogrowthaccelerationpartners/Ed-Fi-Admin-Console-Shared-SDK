@@ -1,0 +1,74 @@
+{
+  "name": "@texas-education-exchange/edx-portal-shared",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
+  "version": "2.2.5",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preinstall": "npx only-allow pnpm",
+    "dist": "rm -rf ./dist && tsc && vite build",
+    "preview": "vite preview",
+    "lint": "cspell \"src/**\""
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/theme-tools": "^2.1.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/archivo-narrow": "^5.0.18",
+    "@fontsource/open-sans": "^4.5.14",
+    "@fontsource/poppins": "^4.5.10",
+    "@novu/client": "0.24.0",
+    "@novu/notification-center": "0.24.0",
+    "@tanstack/react-table": "^8.11.7",
+    "axios": "^1.6.6",
+    "framer-motion": "^10.18.0",
+    "interweave": "^13.1.0",
+    "oidc-client-ts": "^2.4.0",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.25.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-idle-timer": "^5.7.2",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-oidc-context": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "@types/react": "^18.2.48",
+    "@types/react-datepicker": "^4.19.5",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "cspell": "^8.9.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.5.2",
+    "vite-plugin-dts": "^2.3.0"
+  },
+  "resolutions": {
+    "axios": "^1.6.6"
+  },
+  "keywords": [
+    "npm",
+    "portal-shared"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@texas-education-exchange"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@novu/client@0.24.0": "patches/@novu__client@0.24.0.patch"
+    }
+  }
+}
