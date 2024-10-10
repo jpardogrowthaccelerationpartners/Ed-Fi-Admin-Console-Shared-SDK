@@ -50,21 +50,23 @@ jobs:
 
       - name: Create packages
         # Explicit step is not required for publishing, but it allows us to upload artifacts
-        run: npm version
+        run: | 
+            npm version prerelease --preid=pre-release
+            npm pack
 
-      # - name: Create .npmrc for Azure Artifacts publishing
-      #   run: |
-      #     echo "Configuring .npmrc for ${{ env.NPM_REGISTRY }}"
-      #     set +x  # disable echo to shell so that the base64-encoded API key never escapes into the log.
+      - name: Create .npmrc for Azure Artifacts publishing
+        run: |
+           echo "Configuring .npmrc for ${{ env.NPM_REGISTRY }}"
+           set +x  # disable echo to shell so that the base64-encoded API key never escapes into the log.
 
-      #     # Create the user .npmrc file with proper settings
-      #     API_KEY=`echo -n "${{ env.ARTIFACTS_API_KEY }}" | base64`
-      #     touch $HOME/.npmrc
-      #     echo "; begin auth token" >> $HOME/.npmrc
-      #     echo ${{ env.NPM_REGISTRY }}:username=${{ env.ARTIFACTS_USERNAME }} >> $HOME/.npmrc
-      #     echo ${{ env.NPM_REGISTRY }}:_password=$API_KEY >> $HOME/.npmrc
-      #     echo ${{ env.NPM_REGISTRY }}:email=techsupport@ed-fi.org >> $HOME/.npmrc
-      #     echo "; end auth token" >> $HOME/.npmrc
+           # Create the user .npmrc file with proper settings
+           API_KEY=`echo -n "${{ env.ARTIFACTS_API_KEY }}" | base64`
+           touch $HOME/.npmrc
+           echo "; begin auth token" >> $HOME/.npmrc
+           echo ${{ env.NPM_REGISTRY }}:username=${{ env.ARTIFACTS_USERNAME }} >> $HOME/.npmrc
+           echo ${{ env.NPM_REGISTRY }}:_password=$API_KEY >> $HOME/.npmrc
+           echo ${{ env.NPM_REGISTRY }}:email=techsupport@ed-fi.org >> $HOME/.npmrc
+           echo "; end auth token" >> $HOME/.npmrc
 
       # - name: Publish
       #   run: npm publish --tag dev
