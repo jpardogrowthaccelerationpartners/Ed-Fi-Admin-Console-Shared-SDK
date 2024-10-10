@@ -14,7 +14,7 @@
     }
   },
   "release": { 
-    "branches": [ "main" 
+    "branches": [ "main",
       { 
         "name": "pre-release", 
         "prerelease": true
