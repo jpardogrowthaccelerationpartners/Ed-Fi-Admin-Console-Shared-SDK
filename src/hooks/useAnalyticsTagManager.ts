@@ -1,27 +1,27 @@
 import { useContext, useEffect } from "react";
 import { TEEAuthDataContext } from "../context";
+import { AnalyticsTagManagerTool } from '../enums/enums';
+import useMatomoTagManager from './useMatomoTagManagerStrategy';
+import useGoogleAnalyticsTagManager from './useGoogleAnalyticsTagManagerStrategy';
+
 
 const useAnalyticsTagManager = () => {
-  const { edxAppConfig } = useContext(TEEAuthDataContext)
-
-  useEffect(() => {
-    if (edxAppConfig && edxAppConfig.app && edxAppConfig.app.analytics) {
-      console.log("Adding Matomo tag manager analytics script for react - edx")
-      var _mtm = (<any>window)._mtm = (<any>window)._mtm || []
-
-      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'})
-
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]
-
-      g.async=true
-      g.src=`${edxAppConfig.app.analytics.managerUrl}/js/container_${edxAppConfig.app.analytics.containerId}.js`
-
-      if (s.parentNode) {
-        console.log('Insert matomo script')
-        s.parentNode.insertBefore(g,s)
-      }
+   const { edxAppConfig } = useContext(TEEAuthDataContext)
+   if(edxAppConfig?.app?.webAnalytics?.enableWebAnalytics){
+        switch(edxAppConfig?.app.webAnalytics?.tool.toLowerCase()) {
+            case AnalyticsTagManagerTool.Matomo:
+                useMatomoTagManager();
+                break;
+            case AnalyticsTagManagerTool.GoogleAnalytics:
+                useGoogleAnalyticsTagManager();
+                break;
+            default:
+                console.error('Unsupported analytics tool');
+        }
     }
-  }, [])
-}   
-  
-export default useAnalyticsTagManager
+    else{
+        console.log('The use of an Analytics tool is disabled');
+    }
+};
+
+export default useAnalyticsTagManager;
