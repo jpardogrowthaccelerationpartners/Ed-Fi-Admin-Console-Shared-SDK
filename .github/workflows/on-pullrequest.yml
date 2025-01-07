@@ -18,7 +18,6 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
   security-events: write
 
 concurrency:
