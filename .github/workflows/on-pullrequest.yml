@@ -36,6 +36,9 @@ jobs:
   analyze-code:
     name: Analyze Code
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write 
+      
     defaults:
       run:
         shell: pwsh
